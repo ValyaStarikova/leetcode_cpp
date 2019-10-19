@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/next-greater-node-in-linked-list/
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {
+        
+        vector<int>nodeVal;
+        // creating vector of list`s values
+        while(head!=NULL){
+            nodeVal.push_back(head->val);
+            head=head->next;
+        }
+        
+        int size = nodeVal.size();
+        vector<int>result(size, 0);
+        
+        stack<int>s;
+        s.push(nodeVal[size-1]);//adding last element of vector into stack
+        for(int i=size-2;i>=0;i--){
+            if(nodeVal[i]<s.top()){ // if values of current vector`s element is less then the top element of the stack
+                result[i] = s.top(); // adding top of then stack into result vector
+            }
+            else{ //if bigger
+                while(!s.empty() && nodeVal[i]>=s.top())
+                    s.pop();// deleting elements of the stack till they become less then current element of the vector
+                
+                if(s.empty())result[i] = 0;// become empty
+                else result[i] = s.top();
+            }
+            
+            s.push(nodeVal[i]);
+        }
+        return result;
+    }
+};
