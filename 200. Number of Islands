@@ -1,0 +1,35 @@
+//https://leetcode.com/problems/number-of-islands/
+class Solution {
+public:
+    
+    void DepthFirstSearch(vector<vector<char>> &grid, int r, int c){
+        int Rows = grid.size();
+        int Columns = grid[0].size();
+        
+        grid[r][c] = '0';
+        
+        if (r+1 <  Rows    && grid[r+1][c] == '1') DepthFirstSearch(grid, r+1, c); //visit uper
+        if (r-1 >= 0       && grid[r-1][c] == '1') DepthFirstSearch(grid, r-1, c); //visit lower 
+        if (c+1 <  Columns && grid[r][c+1] == '1') DepthFirstSearch(grid, r, c+1); //visit right
+        if (c-1 >= 0       && grid[r][c-1] == '1') DepthFirstSearch(grid, r, c-1); //visit left
+        
+    }
+    
+    int numIslands(vector<vector<char>>& grid) {
+        int n = 0;
+        int R = grid.size();
+        if (R == 0) return 0;
+        int C = grid[0].size();
+        
+        for (int i = 0; i < R; i++){
+            for (int j = 0; j < C; j++){
+                if (grid[i][j] == '1'){
+                    n++;
+                    DepthFirstSearch(grid, i, j);
+                }
+            }
+        }
+        
+        return n;
+    }
+};
