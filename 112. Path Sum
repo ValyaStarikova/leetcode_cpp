@@ -1,0 +1,43 @@
+//https://leetcode.com/problems/path-sum/
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum) {
+        TreeNode* cur = root;
+        stack<TreeNode*> checkedLeft;
+        stack<int> oldSum;
+        while(cur)
+        {
+            if ((cur->val - sum == 0) && !cur->left && !cur->right)
+                return true;
+            else if(cur->left || cur->right)
+            {
+                sum -= cur->val;
+                if(cur->left)
+                {
+                    if(cur->right)
+                    {
+                        checkedLeft.push(cur->right);
+                        oldSum.push(sum);
+                        
+                    }
+                    cur = cur->left;
+                }
+                else
+                    cur = cur->right;
+            }
+            else
+            {
+                if(!checkedLeft.empty())
+                {  
+                    cur = checkedLeft.top();
+                    checkedLeft.pop();
+                    sum = oldSum.top();
+                    oldSum.pop();
+                }
+                else
+                    return false;
+            }
+        }
+        return false;
+    }
+};
