@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/unique-paths/submissions/
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+       
+        vector<int> pre_row(n, 1), cur_row(n, 1);
+       
+        for(int i = 1; i < m; ++i) {
+            for(int j = 1; j < n; ++j) {
+                cur_row[j] = cur_row[j-1] + pre_row[j];
+            }
+            
+            swap(cur_row, pre_row);
+        }
+        return pre_row.back();
+    }
+};
