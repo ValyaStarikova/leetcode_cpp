@@ -1,0 +1,47 @@
+//https://leetcode.com/problems/find-the-town-judge/
+class Solution {
+public:
+   int findJudge(int N, vector<vector<int>>& trust) {
+      vector <bool> fl(N);
+       
+       for (int i=0;i<N;i++){
+           fl[i]=false;
+       }
+
+		for (int i = 1; i <= N; i++) {
+            int j=0;
+			while((!fl[i-1]) && (j <trust.size())){
+                if (trust[j][0] == i) {
+				fl[i-1] = true;
+			}
+			else {
+				j++;
+				fl[i-1] = false;
+			}
+		  }
+        }
+
+		for (int i = 1; i <= N; i++) {
+			if (!fl[i-1]) {
+				int k = 0;
+				for (int j = 0; j < trust.size(); j++) {
+					if (i == trust[j][1]){k++;}
+				}
+				if (k != N - 1) { fl[i-1] = true; }
+			}
+		}
+
+		int k = 0;
+		int ind;
+		for (int i = 0; i < N; i++) {
+			if (!fl[i]) {
+				ind = i+1;
+				k++;
+			}
+		}
+
+		if (k == 1) return ind;
+		else return -1;
+       
+    }
+};
