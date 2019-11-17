@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/palindrome-number/
+class Solution {
+public:
+    int reverse(int x) {
+    
+    long answer = 0;
+    while(x != 0) {
+     answer = answer*10 + x % 10;
+        x /= 10;
+    }
+        
+   if(answer> 2147483647 || answer < -2147483648) return 0;   
+        
+   if (x<0){
+       return (-1)*answer;}
+        else{
+            return answer;}
+}
+    
+    bool isPalindrome(int x) {
+     if (x<0) return false;
+       int x1=reverse(x);
+        if (x1==x)return true;
+        else return false;
+        
+    }
+};
