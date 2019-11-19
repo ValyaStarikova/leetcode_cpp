@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/repeated-substring-pattern/
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        int n= s.size();
+        if (s.empty()) return false;
+        string a;
+        
+        for (int i=0;i<n-1;i++){
+            a+=s[i];
+            
+             string  a1;
+            while (a1.size()<n){a1+=a;}
+            
+            if (a1==s) return true;
+             
+        }return false;
+    }
+};
