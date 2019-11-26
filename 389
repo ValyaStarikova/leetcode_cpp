@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/find-the-difference/
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        int m = s.size();
+        int n = t.size();
+        unordered_map<char,int> s1, t1;
+        
+        for(auto ch: s)
+            s1[ch]++;
+        
+        for(auto ch: t)
+            t1[ch]++;
+        
+        for(auto ch: t){
+            if(s1.find(ch)==s1.end())
+                return ch;
+            else if(t1[ch]!=s1[ch]) 
+                return ch;
+            
+        }
+        char ch;
+             
+        return ch; 
+    }
+};
