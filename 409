@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/longest-palindrome/
+class Solution {
+public:
+    int longestPalindrome(string s) {
+       map<char,int> map;
+        for(auto i:s){
+          map[i]+=1;  
+        }
+        int ans=0;
+        bool fl=false;
+        for (auto i:map){
+           ans+=i.second/2*2;
+               if (i.second%2==1) {
+            if (!fl){
+               fl=true;
+               ans++;
+           }
+            }
+            
+        }
+        return ans;
+    }
+};
+
