@@ -1,0 +1,29 @@
+
+vector<string> subdomainVisits(vector<string>& cpdomains) {
+	int n = cpdomains.size();
+	map<string, int> result;
+
+	for (int i = 0; i < n; i++) {
+		int j = cpdomains[i].find(' ', 0);
+		string s = cpdomains[i].substr(j + 1);
+		int count = stoi(cpdomains[i].substr(0, j));
+
+		int k=j+1;
+		
+        result[s] += count;
+		while (k>0) {
+			
+			s = s.substr(k+1);
+			result[s] += count;
+			k = s.find('.', j + 1);
+		}
+		
+
+
+	}
+	vector<string> r;
+	for (auto i : result) {
+		r.push_back(to_string(i.second) + ' ' + i.first);
+	}
+	return r;
+}
