@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/count-binary-substrings/
+class Solution {
+public:
+    int countBinarySubstrings(string s) {
+        vector <int> w;
+        int t=0;
+        w.push_back(1);
+        for (int i=1;i<s.size();i++){
+            if (s[i-1]!=s[i]){
+                w.push_back(1); ++t;
+            }else{w[t]++;}
+        }
+        
+        int ans=0;
+        for (int i=1;i<=t;i++){
+            ans+=min(w[i-1],w[i]);
+        }
+        return ans;
+    }
+};
