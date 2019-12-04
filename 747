@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/largest-number-at-least-twice-of-others/
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+         int n = nums.size();
+        int max = 0;
+        int max_i = -1;
+        
+        for(int i=0; i<n; i++) {
+            if(nums[i] > max){
+                max = nums[i];
+                max_i = i;}
+        }
+        
+        for(int i=0; i<n; i++) {
+            if(i != max_i && 2*nums[i] > max)  return -1;      
+        }
+        
+        return max_i;
+    }
+};
