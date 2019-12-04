@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/self-dividing-numbers/
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+      vector<int>res;
+        for(int i = left; i <= right; i++)
+            if(check(i)) res.push_back(i);
+        return res;
+    }
+    
+    bool check(int i){
+        int n = i;
+        while(n){
+            if(!(n % 10) || i % (n % 10)) return false;
+            n /= 10;
+        }
+        return true;  
+    }
+};
