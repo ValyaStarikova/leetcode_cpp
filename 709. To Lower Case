@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/to-lower-case/
+class Solution {
+public:
+    string toLowerCase(string str) {
+       int i=0;
+  char c;
+        while (str[i])
+  {
+    c=str[i];
+    str[i]=(tolower(c));
+    i++;
+  }
+return str;
+    }
+};
