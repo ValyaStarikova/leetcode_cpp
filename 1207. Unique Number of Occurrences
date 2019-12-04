@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/unique-number-of-occurrences/
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+       int  n=arr.size();
+        map<int,int> fl;        map<int,int> f;
+
+        for (int i=0;i<n;i++){
+          fl[arr[i]]=0;
+        }
+        
+        for (int i=0;i<n;i++){
+            fl[arr[i]]=fl[arr[i]]+1;
+        }
+        
+       
+        for (auto i:fl){
+            f[i.second]+=1;
+            if (f[i.second]>1){
+                return false;
+            }
+        }
+        return true;
+            
+    
+    }
+};
