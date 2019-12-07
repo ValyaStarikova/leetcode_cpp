@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/play-with-chips/
+class Solution {
+public:
+    int minCostToMoveChips(vector<int>& chips) {
+         int step1 = 0;
+        int step2 = 0;
+
+        for (auto i : chips)
+            if (i % 2 == 1)   ++step1;
+            else   ++step2;
+
+        return min(step2,step1);
+    }
+};
