@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        vector<int> dir_row = {-1,0,1,0};
+        vector<int> dir_col = {0,1,0,-1};
+        int row = grid.size();
+        int col = grid[0].size();
+        int ans = 0;
+        //Scan
+        queue<int> q; //all starting cells with rotten oranges;
+        map<int,int> depth; //position, depth
+        
+        for(int i=0;i<row;++i){
+            for(int j=0;j<col;++j){
+                if(grid[i][j] == 2){
+                    q.push(i*col+j);
+                    depth.insert(make_pair(i*col+j, 0));
+                }
+            }
+        }
+        
+        //Moving
+        int minimumMoving = 0;
+        int pos,r,c;
+        while(!q.empty()){
+            pos = q.front();
+            q.pop();
+            r = pos/col;
+            c = pos%col;
+            for(int i=0;i<4;++i){
+                int new_row = r + dir_row[i];
+                int new_col = c + dir_col[i];
+                if(new_row>=0 && new_row<row && new_col>=0 && new_col<col && grid[new_row][new_col]==1 ){
+                    grid[new_row][new_col] =2;
+                    int new_pos = new_row*col+new_col;
+                    q.push(new_pos);
+                    depth.insert(
+                        make_pair(new_pos, depth.find(pos)->second+1) );
+                    ans = depth.find(new_pos)->second;
+                }
+            }
+            
+        }
+        for(int i=0;i<row;++i){
+            for(int j=0;j<col;++j){
+                if(grid[i][j]==1)
+                    return -1;
+            }
+        }
+        return ans;
+    }
+};
