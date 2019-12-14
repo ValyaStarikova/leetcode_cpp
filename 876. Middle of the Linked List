@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/middle-of-the-linked-list/
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {//1 2 3 4 5 
+        ListNode* slow = head;// 1
+        ListNode* fast = head;// 1
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;//2///3//
+            fast = fast->next->next;//3//5
+        }
+        return slow;
+    }
+};
+//если бы этом был массив,то middle=n/2+1;
+//slow перемещается по списку в два раза медленнеe, чем fast, то есть если размер списка n, он обходит список за n div 2,то есть всего итерация n div 2 и за это время slow перемещается в середину списка 
