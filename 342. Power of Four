@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/power-of-four/
+class Solution {
+public:
+    bool isPowerOfFour(int num) {
+        int units = 0;  
+        int count = 0;
+        while (num > 0)  
+        {  
+            units+=(num&0x01);
+            count++;
+            num>>=1;  
+        }  
+        return units==1 && count%2==1;
+    }
+};
