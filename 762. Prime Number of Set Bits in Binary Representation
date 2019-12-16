@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
+class Solution {
+public:
+    int isPrime(int x) {
+       if (x == 2 || x == 3 || x == 5 || x == 7 ||
+                x == 11 || x == 13 || x == 17 || x == 19){ return 1;}
+        else return 0;     
+    }//We only need primes up to 19 because R≤10^6 <2^20 .
+    
+    int hammingWeight(uint32_t n) {
+         int count=0;
+        while(n!=0){
+            n= n & (n-1);
+            count++;
+        }
+        return count;
+    }
+    
+    int countPrimeSetBits(int L, int R) {
+       int count=0;
+        for (int i=L;i<=R;i++){
+           count +=isPrime(hammingWeight(i));
+       } 
+        return count;
+    }
+    
+};
