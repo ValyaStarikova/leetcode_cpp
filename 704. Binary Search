@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/binary-search/
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int first,last;
+        first=0; last=nums.size()-1;
+        for (;first<nums.size()/2+1;first++,last--){
+            if (nums[first]==target ){
+                return first;
+             }
+            if (nums[last]== target){
+                return last;
+            }
+        }
+        return -1;
+    }
+};
