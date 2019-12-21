@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/split-a-string-in-balanced-strings/
+class Solution {
+public:
+    int balancedStringSplit(string s) {
+        int countR = 0, countL = 0, ss = 0;
+        
+        for (auto &val : s) {
+            if (val == 'R') {
+                countR++;
+            }
+            else {
+                countL++;
+            }
+            if (countR == countL) {
+                ss++;
+                countR = countL = 0;
+            }
+        }
+        return ss;
+    }
+};
