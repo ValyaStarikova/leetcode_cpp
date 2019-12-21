@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/remove-outermost-parentheses/
+class Solution {
+public:
+   string removeOuterParentheses(string S) {
+        
+        string res;
+        string prim = "";
+        stack<char> st;
+        
+        for(char ch : S)
+        {
+            if(st.empty())
+            {
+                st.push(ch);
+                if(!prim.empty())
+                    res += prim.erase(prim.size()-1);
+                prim = "";
+            }
+            else 
+            {
+                if(ch == '(')
+                    st.push(ch);
+                else
+                    st.pop();
+                prim += ch;
+            }
+        }
+        
+        if(!prim.empty())
+            prim.erase(prim.size()-1);
+        
+        return (res+prim);
+    }
+};
