@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/number-complement/
+class Solution {
+public:
+    int findComplement(int num) {
+        int mask = num;
+        int i = 0;
+
+        while(mask != 0) {
+            mask >>= 1;
+            num ^= (1<<i++);
+        }
+        return num;
+    }
+};
