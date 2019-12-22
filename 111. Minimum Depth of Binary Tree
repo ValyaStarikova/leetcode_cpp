@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/minimum-depth-of-binary-tree/
+class Solution {
+    private:int answer=INT_MAX;
+public:
+    int minDepth(TreeNode* root) {
+        if (root==nullptr) return 0;
+           maxdepth(root,1);
+        return answer;
+    }
+    
+    void maxdepth(TreeNode* root,int depth){
+        if (!root) return;
+        if (root->left==nullptr && root->right==nullptr) answer=min(answer,depth);
+        maxdepth(root->left,depth+1);  
+        maxdepth(root->right,depth+1);
+      
+    }
+};
