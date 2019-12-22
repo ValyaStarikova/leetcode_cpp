@@ -1,0 +1,31 @@
+//https://leetcode.com/problems/uncommon-words-from-two-sentences/
+class Solution {
+public:
+    void StringtoWords(string S,map<string, int>& M){
+       string word;
+        for(char ch : S) {
+            if(ch == ' '){
+                M[word]++;
+                word = "";
+            }
+            else
+                word += ch;
+        }
+        
+        M[word]++;
+        return;
+    }
+    
+    vector<string> uncommonFromSentences(string A, string B) {
+        vector<string> result;
+        map<string, int> m;
+        
+        StringtoWords(A,m);        StringtoWords(B,m);        
+        
+        for(auto i : m)
+            if(i.second == 1){
+            result.push_back(i.first);}
+        
+        return result; 
+    }
+};
