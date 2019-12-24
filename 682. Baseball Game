@@ -1,0 +1,33 @@
+//https://leetcode.com/problems/baseball-game/
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        if (ops.empty()) return 0;
+        
+        stack<int> game;    int sum = 0;
+        
+        for (auto  i:ops) {
+            if (i == "C") {
+                sum -= game.top();
+                game.pop();
+            } else if (i == "D") {
+                game.push(game.top()*2);
+                sum += game.top();
+            } else if (i== "+") {
+                int a = game.top();
+                game.pop();
+                int b = game.top();
+                game.push(a);
+                
+                sum += (a+b);
+                game.push(a+b);
+            } else {
+                int n = stoi(i);
+                sum += n;
+                game.push(n);
+            }
+        }
+        
+        return sum; 
+    }
+};
