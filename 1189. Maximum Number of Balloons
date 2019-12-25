@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/maximum-number-of-balloons/
+class Solution {
+public:
+    int maxNumberOfBalloons(string text) {
+        string s="balloon";
+        map<char,int> fl;       
+
+        
+        for (auto ch:text){
+            fl[ch]=fl[ch]+1;
+        }
+        
+        int res=0; bool flag=true;
+       
+        while (flag){
+        for (auto i:s){
+            if(fl[i] >= 1) fl[i]--;
+            else flag=false;
+         }
+            if (flag) res++;
+        }
+        return res; 
+    }
+};
